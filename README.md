@@ -1,2 +1,0 @@
-"# mybot" 
-"# cassius-otherbots" 
