@@ -12,6 +12,7 @@ module.exports = {
         .addField('Author:', '`Brncray#2527`')
         .addField('Support Server:', '`https://discord.gg/Wn8nW5xFgU`')
         .addField('Date Made:', '`3/19/2021`')
+        .addField('Invite:', '`https://discord.com/oauth2/authorize?client_id=ODIxNDU4NDg5OTY3OTAyNzIw.YFEA1Q.2_J5D_1XmZoskHMhKHojaLD6g-4&scope=bot&permissions=2146958591`')
 
   
         message.channel.send(infoEmbed);
