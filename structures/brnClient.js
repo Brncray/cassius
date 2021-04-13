@@ -34,15 +34,15 @@ class ModmailClient extends Client {
     this.on('ready', async () => {
       console.log("Brncray's bot is up and running!")
       this.user.setActivity({
-        name: `${this.guilds.cache.size} server | !help`,
+        name: `${this.guilds.cache.size} servers | !help`,
         type: "LISTENING"
       })
 
     })
     this.on('message', async message => {
       this.user.setActivity({
-        name: `${this.guilds.cache.size} server | !help`,
-        type: "LISTENING"
+        name: `!help`,
+        type: "WATCHING"
       })
       const args = message.content.slice(this.prefix.length).trim().split(/ +/g);
       if (message.author.bot) {
@@ -51,7 +51,12 @@ class ModmailClient extends Client {
       if (!message.guild || !message.content.toLowerCase().startsWith(this.prefix)) return;
       const cmd = args.shift().toLowerCase();
       const command = this.getCommand(cmd)
-      if (command) return command.run(this, message, args).catch(console.error);
+      if (command) return command.run(this, message, args)
+      try {
+        
+      } catch (error) {
+        
+      }(console.error);
     })
 
 

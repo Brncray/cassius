@@ -8,12 +8,13 @@ module.exports = {
 
     async run (client, message, args){
 
-        //Sort your commands into categories, and make seperate embeds for each category
+        
 
         const supporter = new Discord.MessageEmbed()
         .setTitle('Supporters')
-        .addField('`Kader#9999`', 'First member of the server :tada: (he is swag)')
+        .addField('`Kader#9999`', 'First member of the server <a:ClapClap:826157355527307298> (he is swag)')
         .addField('`Girl#1637`', 'Second in the server :tada:')
+        .addField('`Kawaey#1560`', 'Designed bot profile picture! :tada: (expert brainz)')
         .setTimestamp()
 
 

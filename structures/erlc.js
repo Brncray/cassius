@@ -17,7 +17,7 @@ class ModmailClient extends Client {
     /*
     constants
     */
-    this.prefix = "&"
+    this.prefix = "!"
   }
   commandHandler(path) {
     this.fs.readdirSync(this.path.normalize(path)).map((f) => {
@@ -32,21 +32,19 @@ class ModmailClient extends Client {
     this.commandHandler(path);
     this.login(token)
     this.on('ready', async () => {
-      console.log("Brncray's 4th bot is up and running!")
+      console.log("Brncray's bot is up and running!")
       this.user.setActivity({
-        name: `youtube.com/HimaaMinecraft`,
-        type: "PLAYING"
+        name: `${this.guilds.cache.size} servers | !help`,
+        type: "LISTENING"
       })
 
     })
     this.on('message', async message => {
       this.user.setActivity({
-        name: `to Himma's Hangout `,
-        type: "LISTENING"
+        name: `!help`,
+        type: "WATCHING"
       })
-      
-      
-          const args = message.content.slice(this.prefix.length).trim().split(/ +/g);
+      const args = message.content.slice(this.prefix.length).trim().split(/ +/g);
       if (message.author.bot) {
         return;
       }

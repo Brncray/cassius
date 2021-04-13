@@ -5,7 +5,7 @@ const {
     MessageEmbed
 } = require('discord.js');
 module.exports = {
-    name: "ban",
+    name: "kick",
 
     /**
      * @param {Client} client
@@ -17,10 +17,10 @@ module.exports = {
             member,
             mentions
         } = message
-        if(!member.hasPermission('BAN_MEMBERS' || 'ADMINISTRATOR'))
+        if(!member.hasPermission('KICK_MEMBERS' || 'ADMINISTRATOR'))
         {
             const msg = await message.channel.send(new MessageEmbed()
-                .setDescription('❌You don\'t have the right permisions. \nNeeded permissions is `BAN_MEMBERS` or `ADMINISTRATOR`')
+                .setDescription('❌You don\'t have the right permisions. \nNeeded permissions is `KICK_MEMBERS` or `ADMINISTRATOR`')
                 .setColor('RED')
             );
             msg.delete({timeout: 20000});
@@ -49,7 +49,7 @@ module.exports = {
             if(!reason)
             {
                const msg = await message.channel.send(new MessageEmbed()
-                    .setDescription(`❌A reason is required to ban ${target.displayName}`)
+                    .setDescription(`❌A reason is required to kick ${target.displayName}`)
                     .setColor('RED')
                 )
                 msg.delete({timeout: 20000})
@@ -58,35 +58,35 @@ module.exports = {
                 }, 20000);
                 return;
             }
-            targetMember.ban({reason: reason})
+            targetMember.kick({reason: reason})
             .catch(error => {
                return message.channel.send(new MessageEmbed()
-                    .setDescription(`Coulden't ban the person due to ${error}`)
+                    .setDescription(`Coulden't kick the person due to ${error}`)
                     .setColor('RED')
                 )
             })
             message.channel.send(new MessageEmbed()
-                .setDescription(`<a:WeeWoo:826163554855288894> ${target}, has succsessfully gotten banned for ${reason}`)
+                .setDescription(`${target}, has succsessfully gotten kicked for ${reason}`)
                 .setColor('GREEN')
             )
 
             targetMember.send(new MessageEmbed()
-                .setDescription(`You have been banned from \`${message.guild.name}\` for ${reason}.`)
+                .setDescription(`You have been kicked from \`${message.guild.name}\` for ${reason}.`)
                 .setColor('GREEN')
             )
             var channel = message.guild.channels.cache.find(ch => ch.name.toLowerCase().includes('log'));
             channel.send(new MessageEmbed()
-            .setTitle('Member Banned')
-            .addField(`\`Banned Member\``, `${target}`)
+            .setTitle('Member Kicked')
+            .addField(`\`Kicked Member\``, `${target}`)
             .addField('\`Reason\`', `${reason}`)
             .addField('`Channel`', `${message.channel.name}`)
-            .addField(`\`Person who banned them\``, `${message.author}`)
+            .addField(`\`Person who kicked them\``, `${message.author}`)
             .setColor('RANDOM')
             )
         } else
         {
             const msg = await message.channel.send(new MessageEmbed()
-                .setDescription('❌Please tag a person \n Command Format: !ban <member> <reason>')
+                .setDescription('❌Please tag a person \n Command Format: !kick <member> <reason>')
                 .setColor('RED')
             );
             msg.delete({timeout: 20000});
